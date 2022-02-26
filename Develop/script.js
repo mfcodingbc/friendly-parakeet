@@ -60,7 +60,7 @@ var generatePassword = function() {
       console.log(passwordInfo.length)
       // run the next prompt function;
     } else if (passwordLength > 128) {
-      alert("This number is too large for an appropriate password. Please try a number that is 128 or less.");
+      alert("This number is too large for an appropriate password. Please input a number that is 128 or less.");
       return lengthPrompt();
     } else if (passwordLength < 8) {
       alert("This number is too small for an appropriate password. Please type in a number that is 8 or greater.");
@@ -85,8 +85,11 @@ var generatePassword = function() {
   characterReset();
 
     var passwordLetter = window.prompt("Do you want lowercase (L), uppercase (U) or mixed (M) lettering in your password? If no characters are to be from the alphabet, type none (N)")
+    
+    passwordLetter = passwordLetter.toLowerCase();
+    
     if (passwordLetter === "none" || passwordLetter === "N" || passwordLetter === "n") {
-      alert("You have selected no alpabet characters.")
+      alert("You have selected no alphabet characters.")
       // log this into the password object
       passwordInfo.mix = 0;
       console.log(passwordInfo.mix);
