@@ -60,10 +60,10 @@ var generatePassword = function() {
       console.log(passwordInfo.length)
       // run the next prompt function;
     } else if (passwordLength > 128) {
-      alert("This length is too large for an appropriate password. Please try a number that is 128 or less.");
+      alert("This number is too large for an appropriate password. Please try a number that is 128 or less.");
       return lengthPrompt();
     } else if (passwordLength < 8) {
-      alert("This is too small for a strong password. Please type in a number that is 8 or greater.");
+      alert("This number is too small for an appropriate password. Please type in a number that is 8 or greater.");
       return lengthPrompt();
     } else if (passwordLength === null || typeof passwordLength === 'string') {
       alert("You need to enter in an appropriate number. Please enter a number between 8 and 128.");
@@ -227,7 +227,48 @@ var generatePassword = function() {
     };
     return randomPassword;
   };
-
+  if (passwordInfo.mix === 101) {
+    for (var i = 0, n = specialAlphaLower.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialAlphaLower.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 102) {
+    for (var i = 0, n = specialAlphaUpper.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialAlphaUpper.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 103) {
+    for (var i = 0, n = specialAlphaMixed.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialAlphaMixed.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 110) {
+    for (var i = 0, n = specialNumbers.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialNumbers.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 111) {
+    for (var i = 0, n = specialNumbersLower.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialNumbersLower.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 112) {
+    for (var i = 0, n = specialNumbersUpper.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialNumbersUpper.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 113) {
+    for (var i = 0, n = specialNumbersMixed.length; i < passwordInfo.length; ++i) {
+      randomPassword += specialNumbersMixed.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
 };
 
 // Get references to the #generate element
