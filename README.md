@@ -1,6 +1,6 @@
 # Module 3: JavaScript Challenge: Password Generator
 
-This week's challenge tasks us with writing JavaScript code that will operate a Password Generator. The user has provided HTML and CSS files that will be affected by the code I write.
+This week's challenge tasks us with writing JavaScript code that will operate a Password Generator. Window prompts appear that ask the user for password criteria based on the user's request. The user has provided HTML and CSS files that will be affected by the code I write.
 
 User Story:
 * AS AN employee with access to sensitive data
