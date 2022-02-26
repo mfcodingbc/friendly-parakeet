@@ -2,22 +2,65 @@
 //~~. Upon button click, window ALERT appears letting user know they will be given prompts in order to determine password generated~~
 // All cancels should display an alert saying password needs a response to generate password, then loop back to that same prompt
 
-// var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-// var numbers = "0123456789";
-// var special = "!()/:;<>[]|~@#$%^&*_-+=";
-
 // Password function runs here, make sure it is RANDOMLY generated from variables defined by user!
 
+//   // options for numbers in password
+//   if (passwordInfo.letter === 0 && passwordInfo.numeric === 1) {
+    
+//   }
+// alphabet variables
+var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
+var alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var alphabetMixed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// numbers variable
+var numbers = "0123456789";
+// special variable
+var special = "!()/:;<>[]|~@#$%^&*_-+=";
+// combined variables
+var numbersLower = numbers + alphabetLower;
+var numbersUpper = numbers + alphabetUpper;
+var numbersMixed = numbers + alphabetMixed;
+var specialAlphaLower = special + alphabetLower;
+var specialAlphaUpper = special + alphabetUpper;
+var specialAlphaMixed = special + alphabetMixed;
+var specialNumbers = special + numbers;
+var specialNumbersLower = special + numbers + alphabetLower;
+var specialNumbersUpper = special + numbers + alphabetUpper;
+var specialNumbersMixed = special + numbers + alphabetMixed;
+// bland password text
+var randomPassword = "";
+// array containing the data from user inputs
+var passwordInfo = {
+  length: 0,
+  numeric: true,
+  special: true,
+  mix: 0,
+  };
+// reset box to blank when generating new password
+var reset =  function() {
+  randomPassword = "";
+  passwordInfo.mix = 0;
+};
+var characterReset = function() {
+  passwordLetter = "";
+  passwordNumeric = true;
+  passwordSpecial = true;
+}
+
 var generatePassword = function() {
+
+  reset();
+
   // Next window PROMPT asks for length of password (between 8-128 characters, have them type out the number then confirm)
   var lengthPrompt = function() {
     var passwordLength = window.prompt("How many characters do you want your password to have? Type a number between 8 and 128.")
     if (passwordLength >= 8 && passwordLength <= 128) {
       // log this into the password object
-      // console.log(passwordLength);
+      passwordInfo.length = passwordLength;
+      console.log(passwordInfo.length)
       // run the next prompt function;
     } else if (passwordLength > 128) {
-      alert("This is too large for the Password Generator to compute. Please try a number that is 128 or less.");
+      alert("This length is too large for an appropriate password. Please try a number that is 128 or less.");
       return lengthPrompt();
     } else if (passwordLength < 8) {
       alert("This is too small for a strong password. Please type in a number that is 8 or greater.");
@@ -38,27 +81,33 @@ var generatePassword = function() {
 
 
   var letterPrompt = function() {
+
+  characterReset();
+
     var passwordLetter = window.prompt("Do you want lowercase (L), uppercase (U) or mixed (M) lettering in your password? If no characters are to be from the alphabet, type none (N)")
     if (passwordLetter === "none" || passwordLetter === "N" || passwordLetter === "n") {
       alert("You have selected no alpabet characters.")
       // log this into the password object
-      let passwordLetter = 0;
-      console.log(passwordLetter);
+      passwordInfo.mix = 0;
+      console.log(passwordInfo.mix);
       // run the next prompt function
     } else if (passwordLetter === "lowercase" || passwordLetter === "L" || passwordLetter === "l") {
       alert("You have selected lowercase lettering only.")
       // log this into the password object
-      console.log(passwordLetter);
+      passwordInfo.mix += 1;
+      console.log(passwordInfo.mix);
       // run the next prompt function
     } else if (passwordLetter === "uppercase" || passwordLetter === "U" || passwordLetter === "u") {
       alert("You have selected uppercase lettering only.")
       // log this into the password object
-      console.log(passwordLetter);
+      passwordInfo.mix += 2;
+      console.log(passwordInfo.mix);
       // run the next prompt function
     } else if (passwordLetter === "mixed" || passwordLetter === "M" || passwordLetter === "m") {
       alert("You have selected a mix of uppercase and lowercase lettering.")
       // log this into the password object
-      console.log(passwordLetter);
+      passwordInfo.mix += 3;
+      console.log(passwordInfo.mix);
       // run the next prompt function
     } else {
       alert("Please input a choice for your lettering in your password from the selection given. If you do not want any alphabet characters, please input 'N' for none.")
@@ -74,12 +123,15 @@ var generatePassword = function() {
     if (passwordNumeric) {
       alert("You will have numbers in your password.")
       // log this into the password object
-      console.log(passwordNumeric);
+      passwordInfo.numeric = true;
+      passwordInfo.mix += 10;
+      console.log(passwordInfo.mix)
       // run the next prompt function
     } else {
       alert("You will not have numbers in your password.")
       // log this into the password object
-      console.log(passwordNumeric);
+      passwordInfo.numeric = false;
+      console.log(passwordInfo.mix)
       // run the next prompt function
     };
   };
@@ -92,12 +144,15 @@ var generatePassword = function() {
     if (passwordSpecial) {
       alert("You will have special characters in your password.")
       // log this into the password object
-      console.log(passwordSpecial);
+      passwordInfo.special = true;
+      passwordInfo.mix += 100;
+      console.log(passwordInfo.mix)
       // run the next prompt function
     } else {
       alert("You will not have special characters in your password.")
       // log this into the password object
-      console.log(passwordSpecial);
+      passwordInfo.special = false;
+      console.log(passwordInfo.mix)
       // run the next prompt function
     };
   };
@@ -106,16 +161,72 @@ var generatePassword = function() {
 
   // At least ONE character type should be selected before moving on! (window prompt user to try again, reload back to first prompt)
   var characterPrompt = function() {
-    if (passwordLetter === "0" && passwordNumeric !== "true" && passwordSpecial !== "true") {
+      if (passwordInfo.mix === 0) {
       alert("You will need at least ONE character type for your password to be generated. Please try again by clicking 'OK'.")
-      letterPrompt();
+      var allPrompt = function() {
+        letterPrompt();
+        numericPrompt();
+        specialPrompt();
+        characterPrompt();
+      };
+      allPrompt();
     } else {
     // Alert user password has been generated
-    alert("Your password has been generated!")
+    alert("Your password will now be generated!")
       };
     };
 
   characterPrompt();
+
+  // options for lettering in password
+  if (passwordInfo.mix === 1) {
+    for (var i = 0, n = alphabetLower.length; i < passwordInfo.length; ++i) {
+      randomPassword += alphabetLower.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 2) {
+    for (var i = 0, n = alphabetUpper.length; i < passwordInfo.length; ++i) {
+      randomPassword += alphabetUpper.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 3) {
+    for (var i = 0, n = alphabetMixed.length; i < passwordInfo.length; ++i) {
+      randomPassword += alphabetMixed.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 10) {
+    for (var i = 0, n = numbers.length; i < passwordInfo.length; ++i) {
+      randomPassword += numbers.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 11) {
+    for (var i = 0, n = numbersLower.length; i < passwordInfo.length; ++i) {
+      randomPassword += numbersLower.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 12) {
+    for (var i = 0, n = numbersUpper.length; i < passwordInfo.length; ++i) {
+      randomPassword += numbersUpper.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 13) {
+    for (var i = 0, n = numbersMixed.length; i < passwordInfo.length; ++i) {
+      randomPassword += numbersMixed.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
+  if (passwordInfo.mix === 100) {
+    for (var i = 0, n = special.length; i < passwordInfo.length; ++i) {
+      randomPassword += special.charAt(Math.floor(Math.random() * n));
+    };
+    return randomPassword;
+  };
 
 };
 
