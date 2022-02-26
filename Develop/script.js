@@ -27,7 +27,9 @@ var generatePassword = function() {
       return lengthPrompt();
     };
   };
+
   lengthPrompt();
+  
   // Next window prompts: character types
   // 1. Include lowercase lettering? prompt
 
