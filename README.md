@@ -1,6 +1,6 @@
 # Module 3: JavaScript Challenge: Password Generator
 
-This week's challenge tasks us with writing JavaScript code that will operate a Password Generator. The user has provided HTML and CSS files that will be affected by the code I write.
+This week's challenge tasks us with writing JavaScript code that will operate a Password Generator. Window prompts appear that ask the user for password criteria based on the user's request. The user has provided HTML and CSS files that will be affected by the code I write.
 
 User Story:
 * AS AN employee with access to sensitive data
@@ -31,8 +31,8 @@ WHEN I have written code in JavaScript that will operate on the provided HTML an
 
 ## Finished Project Links
 
-<!-- URL to site: Included once project is complete. -->
+URL to site: https://mfcodingbc.github.io/friendly-parakeet/
 
 URL to GitHub Repository: https://github.com/mfcodingbc/friendly-parakeet
 
-<!-- ![Finished Site Screenshot](Included once project is complete.) -->
+![Finished Site Screenshot](./deployed-site-screenshot.PNG)
