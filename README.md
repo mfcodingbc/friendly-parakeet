@@ -35,4 +35,4 @@ WHEN I have written code in JavaScript that will operate on the provided HTML an
 
 URL to GitHub Repository: https://github.com/mfcodingbc/friendly-parakeet
 
-<!-- ![Finished Site Screenshot](Included once project is complete.) -->
+![Finished Site Screenshot](./deployed-site-screenshot.PNG)

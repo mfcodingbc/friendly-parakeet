@@ -1,13 +1,5 @@
 // Assignment code here
-//~~. Upon button click, window ALERT appears letting user know they will be given prompts in order to determine password generated~~
-// All cancels should display an alert saying password needs a response to generate password, then loop back to that same prompt
 
-// Password function runs here, make sure it is RANDOMLY generated from variables defined by user!
-
-//   // options for numbers in password
-//   if (passwordInfo.letter === 0 && passwordInfo.numeric === 1) {
-    
-//   }
 // alphabet variables
 var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
 var alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -27,7 +19,7 @@ var specialNumbers = special + numbers;
 var specialNumbersLower = special + numbers + alphabetLower;
 var specialNumbersUpper = special + numbers + alphabetUpper;
 var specialNumbersMixed = special + numbers + alphabetMixed;
-// bland password text
+// blank password text
 var randomPassword = "";
 // array containing the data from user inputs
 var passwordInfo = {
@@ -47,6 +39,7 @@ var characterReset = function() {
   passwordSpecial = true;
 }
 
+// Password function runs here, make sure it is RANDOMLY generated from variables defined by user!
 var generatePassword = function() {
 
   reset();
@@ -77,7 +70,7 @@ var generatePassword = function() {
   // 1. Include lowercase lettering? prompt
 
   // 2. Include upercase lettering? prompt
-  // Possible to have 1 prompt asking for lower, upper, mixed, or none? (L, U, M, N; perhaps buttons as well)
+  // Possible to have 1 prompt asking for lower, upper, mixed, or none (L, U, M, N;)
 
 
   var letterPrompt = function() {
@@ -88,25 +81,25 @@ var generatePassword = function() {
     
     passwordLetter = passwordLetter.toLowerCase();
     
-    if (passwordLetter === "none" || passwordLetter === "N" || passwordLetter === "n") {
+    if (passwordLetter === "none" || passwordLetter === "n") {
       alert("You have selected no alphabet characters.")
       // log this into the password object
       passwordInfo.mix = 0;
       console.log(passwordInfo.mix);
       // run the next prompt function
-    } else if (passwordLetter === "lowercase" || passwordLetter === "L" || passwordLetter === "l") {
+    } else if (passwordLetter === "lowercase" || passwordLetter === "l") {
       alert("You have selected lowercase lettering only.")
       // log this into the password object
       passwordInfo.mix += 1;
       console.log(passwordInfo.mix);
       // run the next prompt function
-    } else if (passwordLetter === "uppercase" || passwordLetter === "U" || passwordLetter === "u") {
+    } else if (passwordLetter === "uppercase" || passwordLetter === "u") {
       alert("You have selected uppercase lettering only.")
       // log this into the password object
       passwordInfo.mix += 2;
       console.log(passwordInfo.mix);
       // run the next prompt function
-    } else if (passwordLetter === "mixed" || passwordLetter === "M" || passwordLetter === "m") {
+    } else if (passwordLetter === "mixed" || passwordLetter === "m") {
       alert("You have selected a mix of uppercase and lowercase lettering.")
       // log this into the password object
       passwordInfo.mix += 3;
@@ -181,7 +174,8 @@ var generatePassword = function() {
 
   characterPrompt();
 
-  // options for lettering in password
+  // options for lettering in password as defined by user
+  // alphabet options
   if (passwordInfo.mix === 1) {
     for (var i = 0, n = alphabetLower.length; i < passwordInfo.length; ++i) {
       randomPassword += alphabetLower.charAt(Math.floor(Math.random() * n));
@@ -200,6 +194,7 @@ var generatePassword = function() {
     };
     return randomPassword;
   };
+  // Number options
   if (passwordInfo.mix === 10) {
     for (var i = 0, n = numbers.length; i < passwordInfo.length; ++i) {
       randomPassword += numbers.charAt(Math.floor(Math.random() * n));
@@ -224,6 +219,7 @@ var generatePassword = function() {
     };
     return randomPassword;
   };
+  // special options
   if (passwordInfo.mix === 100) {
     for (var i = 0, n = special.length; i < passwordInfo.length; ++i) {
       randomPassword += special.charAt(Math.floor(Math.random() * n));
@@ -289,6 +285,7 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", function() {
+  // Upon button click, window ALERT appears letting user know they will be given prompts in order to determine password generated
   alert("In order to generate your password, please answer the folowing prompts.");
   writePassword();
 });
