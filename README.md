@@ -31,7 +31,7 @@ WHEN I have written code in JavaScript that will operate on the provided HTML an
 
 ## Finished Project Links
 
-<!-- URL to site: Included once project is complete. -->
+URL to site: https://mfcodingbc.github.io/friendly-parakeet/
 
 URL to GitHub Repository: https://github.com/mfcodingbc/friendly-parakeet
 
