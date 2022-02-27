@@ -35,4 +35,4 @@ URL to site: https://mfcodingbc.github.io/friendly-parakeet/
 
 URL to GitHub Repository: https://github.com/mfcodingbc/friendly-parakeet
 
-![Finished Site Screenshot](./deployed-site-screenshot.PNG)
+![Finished Site Screenshot](./assets/images/deployed-site-screenshot.PNG)
